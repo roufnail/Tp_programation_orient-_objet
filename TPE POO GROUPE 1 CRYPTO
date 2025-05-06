@@ -181,4 +181,41 @@ class SlantedRectangle extends Rectangle {
         return Double.compare(that.angle, angle) == 0;
     }
 }
+class A {
+    void f(A o) {
+        System.out.println("void f(A o) dans A");
+    }
     
+    void f(B o) {
+        System.out.println("void f(B o) dans A");
+    }
+}
+
+class B extends A {
+    void f(A o) {
+        System.out.println("void f(A o) dans B");
+    }
+    
+    void f(B o) {
+        System.out.println("void f(B o) dans B");
+    }
+}
+
+class C {
+    char ch = 'C';
+    char getCh() { return ch; }
+}
+
+class D extends C {
+    char ch = 'D';
+    char getCh() { return ch; }
+}
+
+public class HeritageMasquage {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        System.out.println("=== Programme sur l'héritage et le masquage de méthodes ===");
+        System.out.println("Ce programme va vous guider à travers les exercices 1 à 13.");
+        System.out.println("Vous allez entrer les données nécessaires pour chaque exercice.\n");
+ 
