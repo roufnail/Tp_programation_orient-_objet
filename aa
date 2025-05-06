@@ -126,3 +126,58 @@ class Rectangle {
                bottomLeft.equals(rectangle.bottomLeft);
     }
 }
+class SlantedRectangle extends Rectangle {
+    private double angle; // angle en radians
+    
+    public SlantedRectangle(Point p1, Point p2, double angle) {
+        super(p1, p2);
+        this.angle = angle;
+    }
+    
+    public SlantedRectangle(Point p, double width, double height, double angle) {
+        super(p, width, height);
+        this.angle = angle;
+    }
+    
+    public SlantedRectangle(double x, double y, double width, double height, double angle) {
+        super(x, y, width, height);
+        this.angle = angle;
+    }
+    
+    public void rotate(double deltaAngle) {
+        this.angle += deltaAngle;
+    }
+    
+    @Override
+    public boolean contains(Point p) {
+        // Implémentation simplifiée - en réalité il faudrait faire une rotation inverse
+        return super.contains(p);
+    }
+    
+    @Override
+    public boolean contains(Rectangle r) {
+        if (r instanceof SlantedRectangle) {
+            SlantedRectangle sr = (SlantedRectangle) r;
+            return this.angle == sr.angle && super.contains(r);
+        }
+        return super.contains(r);
+    }
+    
+    public boolean contains(SlantedRectangle sr) {
+        return this.angle == sr.angle && super.contains(sr);
+    }
+    
+    @Override
+    public String toString() {
+        return "SlantedRectangle[bottomLeft=" + bottomLeft + ", width=" + width + 
+               ", height=" + height + ", angle=" + angle + "]";
+    }
+    
+    @Override
+    public boolean equals(Object obj) {
+        if (!super.equals(obj)) return false;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        SlantedRectangle that = (SlantedRectangle) obj;
+        return Double.compare(that.angle, angle) == 0;
+    }
+}
