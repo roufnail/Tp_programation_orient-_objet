@@ -318,4 +318,60 @@ public class HeritageMasquage {
       
       System.out.println("\nAppuyez sur Entrée pour continuer...");
       scanner.nextLine();
-      
+
+              // Exercice 11
+              System.out.println("\n=== Exercice 11: instanceof ===");
+              System.out.println("Tests instanceof avec les objets A et B:");
+              
+              System.out.println("a instanceof A: " + (a instanceof A));
+              System.out.println("ab instanceof A: " + (ab instanceof A));
+              System.out.println("b instanceof A: " + (b instanceof A));
+              System.out.println("a instanceof B: " + (a instanceof B));
+              System.out.println("ab instanceof B: " + (ab instanceof B));
+              System.out.println("b instanceof B: " + (b instanceof B));
+              
+              System.out.println("\nAppuyez sur Entrée pour continuer...");
+              scanner.nextLine();
+              
+              // Exercice 12
+              System.out.println("\n=== Exercice 12: contains ===");
+              System.out.println("Test de contains avec différents rectangles:");
+              
+              System.out.print("Entrez les dimensions d'un nouveau rectangle (largeur hauteur): ");
+              double width2 = scanner.nextDouble();
+              double height2 = scanner.nextDouble();
+              Rectangle r2 = new Rectangle(p, width2, height2);
+              
+              System.out.print("Entrez un angle pour un nouveau SlantedRectangle (en radians): ");
+              double angle2 = scanner.nextDouble();
+              SlantedRectangle s2 = new SlantedRectangle(p, width2, height2, angle2);
+              
+              System.out.println("\nTests contains:");
+              System.out.println("r.contains(r2): " + r.contains(r2));
+              System.out.println("r.contains(s): " + r.contains(s));
+              System.out.println("s.contains(r): " + s.contains(r));
+              System.out.println("s.contains(s2): " + s.contains(s2));
+              
+              System.out.println("\nAppuyez sur Entrée pour continuer...");
+              scanner.nextLine(); scanner.nextLine();
+              
+              // Exercice 13
+              System.out.println("\n=== Exercice 13: ch et getCh ===");
+              System.out.println("Création d'objets C et D...");
+              
+              C c = new C();
+              C cd = new D();
+              D d = new D();
+              
+              System.out.println("\nRésultats:");
+              System.out.println("c.ch: " + c.ch);
+              System.out.println("c.getCh(): " + c.getCh());
+              System.out.println("cd.ch: " + cd.ch);
+              System.out.println("cd.getCh(): " + cd.getCh());
+              System.out.println("d.ch: " + d.ch);
+              System.out.println("d.getCh(): " + d.getCh());
+              
+              System.out.println("\n=== Fin du programme ===");
+              scanner.close();
+          }
+      }
