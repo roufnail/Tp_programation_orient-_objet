@@ -22,3 +22,108 @@ class Point {
         return "(" + x + ", " + y + ")";
     }
     
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Point point = (Point) obj;
+        return Double.compare(point.x, x) == 0 && Double.compare(point.y, y) == 0;
+    }
+}
+
+class Rectangle {
+    protected Point bottomLeft;
+    protected double width;
+    protected double height;
+    private static int nbr = 0;
+    
+    public Rectangle(Point p1, Point p2) {
+        double x1 = Math.min(p1.getX(), p2.getX());
+        double y1 = Math.min(p1.getY(), p2.getY());
+        double x2 = Math.max(p1.getX(), p2.getX());
+        double y2 = Math.max(p1.getY(), p2.getY());
+        this.bottomLeft = new Point(x1, y1);
+        this.width = x2 - x1;
+        this.height = y2 - y1;
+        nbr++;
+    }
+    
+    public Rectangle(Point p, double width, double height) {
+        this.bottomLeft = new Point(p.getX(), p.getY());
+        this.width = width;
+        this.height = height;
+        nbr++;
+    }
+    
+    public Rectangle(double x, double y, double width, double height) {
+        this.bottomLeft = new Point(x, y);
+        this.width = width;
+        this.height = height;
+        nbr++;
+    }
+    
+    public double surface() {
+        return width * height;
+    }
+    
+    public void translate(double dx, double dy) {
+        bottomLeft.translate(dx, dy);
+    }
+    
+    public boolean contains(Point p) {
+        return p.getX() >= bottomLeft.getX() && 
+               p.getX() <= bottomLeft.getX() + width &&
+               p.getY() >= bottomLeft.getY() && 
+               p.getY() <= bottomLeft.getY() + height;
+    }
+    
+    public boolean contains(Rectangle r) {
+        return contains(r.bottomLeft) && 
+               contains(new Point(r.bottomLeft.getX() + r.width, r.bottomLeft.getY() + r.height));
+    }
+    
+    public boolean sameAs(Rectangle other) {
+        return bottomLeft.equals(other.bottomLeft) && 
+               width == other.width && 
+               height == other.height;
+    }
+    
+    public static int getNbr() {
+        return nbr;
+    }
+    
+    public static Rectangle hull(Rectangle[] rectangles) {
+        if (rectangles == null || rectangles.length == 0) return null;
+        
+        double minX = rectangles[0].bottomLeft.getX();
+        double minY = rectangles[0].bottomLeft.getY();
+        double maxX = rectangles[0].bottomLeft.getX() + rectangles[0].width;
+        double maxY = rectangles[0].bottomLeft.getY() + rectangles[0].height;
+        
+        for (int i = 1; i < rectangles.length; i++) {
+            Rectangle r = rectangles[i];
+            minX = Math.min(minX, r.bottomLeft.getX());
+            minY = Math.min(minY, r.bottomLeft.getY());
+            maxX = Math.max(maxX, r.bottomLeft.getX() + r.width);
+            maxY = Math.max(maxY, r.bottomLeft.getY() + r.height);
+        }
+        
+        return new Rectangle(minX, minY, maxX - minX, maxY - minY);
+    }
+    
+    @Override
+    public String toString() {
+        return "Rectangle[bottomLeft=" + bottomLeft + ", width=" + width + ", height=" + height + "]";
+    }
+    
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Rectangle rectangle = (Rectangle) obj;
+        return Double.compare(rectangle.width, width) == 0 && 
+               Double.compare(rectangle.height, height) == 0 && 
+               bottomLeft.equals(rectangle.bottomLeft);
+    }
+}
+    
