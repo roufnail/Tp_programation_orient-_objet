@@ -218,4 +218,104 @@ public class HeritageMasquage {
         System.out.println("=== Programme sur l'héritage et le masquage de méthodes ===");
         System.out.println("Ce programme va vous guider à travers les exercices 1 à 13.");
         System.out.println("Vous allez entrer les données nécessaires pour chaque exercice.\n");
- 
+      
+        // Exercice 1-4
+      System.out.println("\n=== Exercices 1-4: Rectangles inclinés ===");
+      System.out.println("Création d'un point, d'un rectangle et de rectangles inclinés...");
+      
+      System.out.print("Entrez les coordonnées du point (x y): ");
+      double x = scanner.nextDouble();
+      double y = scanner.nextDouble();
+      Point p = new Point(x, y);
+      
+      System.out.print("Entrez les dimensions du rectangle (largeur hauteur): ");
+      double width = scanner.nextDouble();
+      double height = scanner.nextDouble();
+      Rectangle r = new Rectangle(p, width, height);
+      
+      System.out.print("Entrez l'angle d'inclinaison pour SlantedRectangle (en radians): ");
+      double angle = scanner.nextDouble();
+      Rectangle t = new SlantedRectangle(p, width, height, angle);
+      SlantedRectangle s = new SlantedRectangle(p, width, height, angle);
+      
+      System.out.println("\nObjets créés:");
+      System.out.println("Point p: " + p);
+      System.out.println("Rectangle r: " + r);
+      System.out.println("Rectangle t (référence Rectangle vers SlantedRectangle): " + t);
+      System.out.println("SlantedRectangle s: " + s);
+      
+      System.out.println("\nTest des méthodes:");
+      System.out.println("1. r.surface(): " + r.surface());
+      System.out.println("2. r.contains(p): " + r.contains(p));
+      System.out.println("3. t.surface(): " + t.surface());
+      System.out.println("4. t.contains(p): " + t.contains(p));
+      System.out.println("5. s.surface(): " + s.surface());
+      System.out.println("6. s.contains(p): " + s.contains(p));
+      
+      System.out.print("\nEntrez un angle de rotation à appliquer à s (en radians): ");
+      double rotation = scanner.nextDouble();
+      s.rotate(rotation);
+      System.out.println("Après rotation, s: " + s);
+      
+      System.out.println("\nAppuyez sur Entrée pour continuer...");
+      scanner.nextLine(); scanner.nextLine();
+      
+      // Exercice 5
+      System.out.println("\n=== Exercice 5: Dessin avec rectangles inclinés ===");
+      System.out.println("La classe Dessin peut contenir des rectangles inclinés car SlantedRectangle");
+      System.out.println("hérite de Rectangle. Les méthodes surface et translate fonctionnent toujours");
+      System.out.println("correctement. La méthode contains fonctionne mais ne tient pas compte de");
+      System.out.println("l'angle. La méthode hull fonctionne mais ne considère que la boîte englobante");
+      System.out.println("non inclinée des rectangles inclinés.");
+      
+      System.out.println("\nAppuyez sur Entrée pour continuer...");
+      scanner.nextLine();
+      
+      // Exercices 6-7
+      System.out.println("\n=== Exercices 6-7: toString et equals ===");
+      System.out.println("Comparaison des rectangles créés précédemment:");
+      
+      System.out.println("r.equals(t): " + r.equals(t));
+      System.out.println("t.equals(s): " + t.equals(s));
+      System.out.println("s.equals(new SlantedRectangle(p, width, height, angle)): " + 
+                        s.equals(new SlantedRectangle(p, width, height, angle)));
+      
+      System.out.println("\nAffichage avec toString():");
+      System.out.println("r: " + r);
+      System.out.println("t: " + t);
+      System.out.println("s: " + s);
+      
+      System.out.println("\nAppuyez sur Entrée pour continuer...");
+      scanner.nextLine();
+      
+      // Exercices 8-10
+      System.out.println("\n=== Exercices 8-10: Méthodes f ===");
+      System.out.println("Création d'objets A et B...");
+      
+      A a = new A();
+      A ab = new B();
+      B b = new B();
+      
+      System.out.println("\nRésultats des appels:");
+      System.out.println("1. a.f(a):");
+      a.f(a);
+      System.out.println("2. a.f(ab):");
+      a.f(ab);
+      System.out.println("3. a.f(b):");
+      a.f(b);
+      System.out.println("4. ab.f(a):");
+      ab.f(a);
+      System.out.println("5. ab.f(ab):");
+      ab.f(ab);
+      System.out.println("6. ab.f(b):");
+      ab.f(b);
+      System.out.println("7. b.f(a):");
+      b.f(a);
+      System.out.println("8. b.f(ab):");
+      b.f(ab);
+      System.out.println("9. b.f(b):");
+      b.f(b);
+      
+      System.out.println("\nAppuyez sur Entrée pour continuer...");
+      scanner.nextLine();
+      
